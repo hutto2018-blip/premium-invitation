@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Celebration</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f8f5f2;
+  color: #292522;
+}
+
+.screen {
+  min-height: 100vh;
+  padding: 28px 20px 100px;
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+.cover {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(145deg, #fff7f7, #eee8ff);
+  padding: 30px;
+}
+
+.cover-card {
+  max-width: 500px;
+}
+
+.heart {
+  font-size: 55px;
+  margin-bottom: 20px;
+}
+
+.small {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: #8b7c76;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: 48px;
+  margin: 15px 0;
+}
+
+h2 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  color: #756b67;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.date {
+  font-size: 17px;
+  margin: 20px 0;
+}
+
+.button {
+  border: none;
+  border-radius: 30px;
+  padding: 15px 24px;
+  background: #292522;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin: 18px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+.info {
+  margin: 14px 0;
+  line-height: 1.7;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.count-box {
+  background: #f4eef0;
+  border-radius: 15px;
+  padding: 14px 5px;
+  text-align: center;
+}
+
+.count-box strong {
+  display: block;
+  font-size: 22px;
+}
+
+.count-box span {
+  font-size: 11px;
+  color: #777;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.photo {
+  height: 170px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  background: linear-gradient(135deg, #d9b8c4, #9b8fc4);
+}
+
+.music {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.music-icon {
+  font-size: 70px;
+  margin-bottom: 20px;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin: 8px 0 15px;
+  font-size: 16px;
+}
+
+.rsvp-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.rsvp-buttons button {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 5px;
+  box-shadow: 0 -5px 20px rgba(0,0,0,.08);
+}
+
+.nav button {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  color: #777;
+}
+
+.nav button span {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.message {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  background: #f2f7ef;
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- COVER -->
+<section id="cover" class="cover">
+  <div class="cover-card">
+    <div class="heart">💌</div>
+    <div class="small">You’re Invited</div>
+    <h1>Dream Celebration</h1>
+    <p class="subtitle">
+      A beautiful celebration filled with memories, laughter and love.
+    </p>
+    <div class="date">Saturday · November 14, 2026</div>
+    <button class="button" onclick="openInvite()">Tap to Open Invitation</button>
+  </div>
+</section>
+
+<!-- INVITATION -->
+<section id="invite" class="screen">
+  <div class="small">Welcome</div>
+  <h2>Let's Celebrate</h2>
+
+  <div class="card">
+    <div class="info">📅 <strong>Saturday, November 14, 2026</strong></div>
+    <div class="info">🕕 6:00 PM</div>
+    <div class="info">📍 Ho Chi Minh City, Vietnam</div>
+
+    <button class="button" onclick="openMap()">
+      Open Location
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="small">Countdown</div>
+
+    <div class="countdown">
+      <div class="count-box">
+        <strong id="days">0</strong>
+        <span>Days</span>
+      </div>
+
+      <div class="count-box">
+        <strong id="hours">0</strong>
+        <span>Hours</span>
+      </div>
+
+      <div class="count-box">
+        <strong id="minutes">0</strong>
+        <span>Minutes</span>
+      </div>
+
+      <div class="count-box">
+        <strong id="seconds">0</strong>
+        <span>Seconds</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos" class="screen">
+  <div class="small">Memories</div>
+  <h2>Photo Album</h2>
+
+  <div class="card">
+    <p class="subtitle">
+      A special collection of memories for your guests.
+    </p>
+
+    <div class="photos">
+      <div class="photo">📸</div>
+      <div class="photo">✨</div>
+      <div class="photo">🌸</div>
+      <div class="photo">🥂</div>
+      <div class="photo">🎉</div>
+      <div class="photo">❤️</div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section id="music" class="screen">
+  <div class="small">Listen</div>
+  <h2>Our Celebration Song</h2>
+
+  <div class="card music">
+    <div class="music-icon">🎵</div>
+
+    <p class="subtitle">
+      Tap below to play the celebration music.
+    </p>
+
+    <button class="button" onclick="toggleMusic()" id="musicButton">
+      ▶ Play Music
+    </button>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp" class="screen">
+  <div class="small">Your Reply</div>
+  <h2>Will You Join Us?</h2>
+
+  <div class="card">
+
+    <div class="rsvp-buttons">
+      <button onclick="chooseRSVP('Yes')">💗 Yes</button>
+      <button onclick="chooseRSVP('No')">Maybe / No</button>
+    </div>
+
+    <label>Your Name</label>
+    <input id="guestName" placeholder="Enter your name">
+
+    <label>Number of Guests</label>
+    <select id="guestCount">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+
+    <button class="button" onclick="submitRSVP()">
+      Send RSVP
+    </button>
+
+    <div class="message" id="message"></div>
+  </div>
+</section>
+
+<!-- NAVIGATION -->
+<div class="nav">
+  <button onclick="showScreen('invite')">
+    <span>💌</span>
+    Invite
+  </button>
+
+  <button onclick="showScreen('photos')">
+    <span>📸</span>
+    Photos
+  </button>
+
+  <button onclick="showScreen('music')">
+    <span>🎵</span>
+    Music
+  </button>
+
+  <button onclick="showScreen('rsvp')">
+    <span>💗</span>
+    RSVP
+  </button>
+</div>
+
+<script>
+
+function openInvite() {
+  document.getElementById("cover").style.display = "none";
+  showScreen("invite");
+}
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(function(screen) {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function openMap() {
+  window.open(
+    "https://www.google.com/maps/search/?api=1&query=Ho+Chi+Minh+City+Vietnam",
+    "_blank"
+  );
+}
+
+const eventDate = new Date("November 14, 2026 18:00:00").getTime();
+
+function updateCountdown() {
+
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+
+  if (distance < 0) return;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) /
+    (1000 * 60 * 60)
+  );
+
+  const minutes = Math.floor(
+    (distance % (1000 * 60 * 60)) /
+    (1000 * 60)
+  );
+
+  const seconds = Math.floor(
+    (distance % (1000 * 60)) /
+    1000
+  );
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+let musicPlaying = false;
+let audioContext;
+let oscillator;
+
+function toggleMusic() {
+
+  if (!musicPlaying) {
+
+    audioContext = new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+
+    oscillator = audioContext.createOscillator();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = 440;
+
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+
+    musicPlaying = true;
+
+    document.getElementById("musicButton").textContent =
+      "⏸ Stop Music";
+
+  } else {
+
+    oscillator.stop();
+    musicPlaying = false;
+
+    document.getElementById("musicButton").textContent =
+      "▶ Play Music";
+  }
+}
+
+let selectedRSVP = "";
+
+function chooseRSVP(answer) {
+  selectedRSVP = answer;
+}
+
+function submitRSVP() {
+
+  const name =
+    document.getElementById("guestName").value;
+
+  const guests =
+    document.getElementById("guestCount").value;
+
+  const message =
+    document.getElementById("message");
+
+  if (!name) {
+    message.textContent =
+      "Please enter your name first.";
+  } else {
+
+    message.textContent =
+      "Thank you, " + name +
+      "! Your RSVP has been recorded as " +
+      (selectedRSVP || "Yes") +
+      " for " + guests + " guest(s).";
+  }
+
+  message.style.display = "block";
+}
+
+</script>
+
+</body>
+</html>

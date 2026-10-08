@@ -8,394 +8,526 @@
 <style>
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f8f5f2;
-  color: #292522;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #fdf8f5;
+  color: #4d3b38;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .screen {
+  display: none;
   min-height: 100vh;
   padding: 28px 20px 100px;
-  display: none;
 }
 
 .screen.active {
   display: block;
 }
 
-.cover {
+.opening {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(145deg, #fff7f7, #eee8ff);
+  background: linear-gradient(145deg, #fffaf7, #f8e9e9);
   padding: 30px;
 }
 
-.cover-card {
-  max-width: 500px;
+.open-card {
+  max-width: 430px;
+  width: 100%;
+  padding: 45px 25px;
+  border: 1px solid #dfc2bd;
+  border-radius: 28px;
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 18px 50px rgba(90,60,60,.12);
 }
 
 .heart {
   font-size: 55px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.small {
-  text-transform: uppercase;
+.eyebrow {
   letter-spacing: 4px;
+  text-transform: uppercase;
   font-size: 12px;
-  color: #8b7c76;
+  color: #a57970;
 }
 
 h1 {
-  font-family: Georgia, serif;
-  font-size: 48px;
-  margin: 15px 0;
+  font-size: 42px;
+  margin: 12px 0;
+  font-weight: normal;
 }
 
 h2 {
-  font-family: Georgia, serif;
-  font-size: 34px;
-  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: normal;
+  margin: 10px 0 20px;
+}
+
+h3 {
+  font-weight: normal;
 }
 
 .subtitle {
-  color: #756b67;
-  line-height: 1.6;
-  margin-bottom: 25px;
+  line-height: 1.7;
+  color: #765e59;
 }
 
-.date {
-  font-size: 17px;
-  margin: 20px 0;
-}
-
-.button {
+.main-btn {
   border: none;
   border-radius: 30px;
-  padding: 15px 24px;
-  background: #292522;
+  padding: 15px 26px;
+  background: #9b716b;
   color: white;
-  font-size: 15px;
-  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  box-shadow: 0 8px 20px rgba(120,80,75,.2);
+}
+
+.main-btn:hover {
+  transform: translateY(-1px);
+}
+
+.container {
+  max-width: 650px;
+  margin: auto;
+}
+
+.hero {
+  text-align: center;
+  padding: 20px 0 30px;
+}
+
+.gold-line {
+  width: 70px;
+  height: 1px;
+  background: #c5a36b;
+  margin: 18px auto;
 }
 
 .card {
   background: white;
+  border: 1px solid #eadbd6;
   border-radius: 24px;
   padding: 24px;
   margin: 18px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  box-shadow: 0 8px 25px rgba(80,50,50,.07);
 }
 
-.info {
-  margin: 14px 0;
-  line-height: 1.7;
+.details {
+  display: grid;
+  gap: 14px;
+}
+
+.detail {
+  text-align: center;
+  padding: 14px;
+  background: #fdf7f4;
+  border-radius: 16px;
+}
+
+.detail strong {
+  display: block;
+  color: #8d625b;
+  margin-bottom: 5px;
 }
 
 .countdown {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4,1fr);
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
-.count-box {
-  background: #f4eef0;
+.time-box {
+  background: #f8ece9;
   border-radius: 15px;
-  padding: 14px 5px;
-  text-align: center;
+  padding: 13px 5px;
 }
 
-.count-box strong {
+.time-box strong {
   display: block;
-  font-size: 22px;
+  font-size: 24px;
+  color: #8c625c;
 }
 
-.count-box span {
+.time-box span {
   font-size: 11px;
-  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.photos {
+.gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2,1fr);
   gap: 12px;
 }
 
 .photo {
-  height: 170px;
-  border-radius: 18px;
+  min-height: 150px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 30px;
-  background: linear-gradient(135deg, #d9b8c4, #9b8fc4);
+  background: linear-gradient(145deg,#f7e5e5,#eee0d6);
+  font-size: 45px;
+  border: 1px solid #ead6d0;
 }
 
-.music {
+.music-card {
   text-align: center;
-  padding: 40px 20px;
+  padding: 35px 20px;
 }
 
-.music-icon {
-  font-size: 70px;
-  margin-bottom: 20px;
+.music-button {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: #9b716b;
+  color: white;
+  font-size: 27px;
+  margin: 20px;
+}
+
+.rsvp-options {
+  display: grid;
+  gap: 10px;
+}
+
+.rsvp-options button {
+  padding: 14px;
+  border-radius: 15px;
+  border: 1px solid #d9c0bb;
+  background: white;
+  color: #624b47;
 }
 
 input, select {
   width: 100%;
   padding: 14px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  margin: 8px 0 15px;
-  font-size: 16px;
+  margin-top: 10px;
+  border-radius: 13px;
+  border: 1px solid #dbc8c3;
+  font-family: inherit;
+  font-size: 15px;
 }
 
-.rsvp-buttons {
-  display: flex;
-  gap: 10px;
-  margin: 15px 0;
-}
-
-.rsvp-buttons button {
-  flex: 1;
+.map-btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: #f3e3df;
+  color: #76534e;
   padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  background: white;
+  border-radius: 15px;
+  margin-top: 15px;
 }
 
-.nav {
+.bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
+  height: 72px;
+  background: rgba(255,255,255,.96);
+  border-top: 1px solid #eadbd6;
   display: flex;
-  justify-content: space-around;
-  padding: 12px 5px;
-  box-shadow: 0 -5px 20px rgba(0,0,0,.08);
+  justify-content: center;
+  gap: 5px;
+  z-index: 20;
 }
 
-.nav button {
+.bottom-nav button {
+  flex: 1;
+  max-width: 150px;
   border: none;
   background: transparent;
+  color: #856963;
   font-size: 12px;
-  color: #777;
 }
 
-.nav button span {
+.bottom-nav span {
   display: block;
-  font-size: 20px;
+  font-size: 21px;
   margin-bottom: 3px;
 }
 
 .message {
+  text-align: center;
+  color: #80605a;
   margin-top: 15px;
-  padding: 15px;
-  border-radius: 12px;
-  background: #f2f7ef;
-  display: none;
+}
+
+@media (max-width: 380px) {
+  h1 {
+    font-size: 35px;
+  }
+
+  .countdown {
+    gap: 5px;
+  }
+
+  .time-box strong {
+    font-size: 20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- COVER -->
-<section id="cover" class="cover">
-  <div class="cover-card">
+<!-- OPENING -->
+<section id="opening" class="opening">
+  <div class="open-card">
     <div class="heart">💌</div>
-    <div class="small">You’re Invited</div>
-    <h1>Dream Celebration</h1>
+    <div class="eyebrow">A Special Invitation</div>
+    <h1>You're Invited</h1>
+    <div class="gold-line"></div>
+    <h2>Dream Celebration</h2>
     <p class="subtitle">
-      A beautiful celebration filled with memories, laughter and love.
+      A beautiful celebration filled with memories,
+      laughter and love.
     </p>
-    <div class="date">Saturday · November 14, 2026</div>
-    <button class="button" onclick="openInvite()">Tap to Open Invitation</button>
+    <p>Saturday · November 14, 2026</p>
+    <button class="main-btn" onclick="openInvitation()">
+      Tap to Open Invitation
+    </button>
   </div>
 </section>
 
-<!-- INVITATION -->
+<!-- INVITE -->
 <section id="invite" class="screen">
-  <div class="small">Welcome</div>
-  <h2>Let's Celebrate</h2>
+  <div class="container">
 
-  <div class="card">
-    <div class="info">📅 <strong>Saturday, November 14, 2026</strong></div>
-    <div class="info">🕕 6:00 PM</div>
-    <div class="info">📍 Ho Chi Minh City, Vietnam</div>
+    <div class="hero">
+      <div class="eyebrow">Please Join Us</div>
+      <h1>Let's Celebrate</h1>
+      <div class="gold-line"></div>
+      <p class="subtitle">
+        We would love to have you with us for this special occasion.
+      </p>
+    </div>
 
-    <button class="button" onclick="openMap()">
-      Open Location
-    </button>
-  </div>
+    <div class="card details">
 
-  <div class="card">
-    <div class="small">Countdown</div>
-
-    <div class="countdown">
-      <div class="count-box">
-        <strong id="days">0</strong>
-        <span>Days</span>
+      <div class="detail">
+        <strong>📅 Date</strong>
+        Saturday, November 14, 2026
       </div>
 
-      <div class="count-box">
-        <strong id="hours">0</strong>
-        <span>Hours</span>
+      <div class="detail">
+        <strong>🕕 Time</strong>
+        6:00 PM
       </div>
 
-      <div class="count-box">
-        <strong id="minutes">0</strong>
-        <span>Minutes</span>
+      <div class="detail">
+        <strong>📍 Location</strong>
+        Ho Chi Minh City, Vietnam
       </div>
 
-      <div class="count-box">
-        <strong id="seconds">0</strong>
-        <span>Seconds</span>
+    </div>
+
+    <div class="card">
+      <h2 style="text-align:center;">Countdown</h2>
+
+      <div class="countdown">
+        <div class="time-box">
+          <strong id="days">0</strong>
+          <span>Days</span>
+        </div>
+
+        <div class="time-box">
+          <strong id="hours">0</strong>
+          <span>Hours</span>
+        </div>
+
+        <div class="time-box">
+          <strong id="minutes">0</strong>
+          <span>Minutes</span>
+        </div>
+
+        <div class="time-box">
+          <strong id="seconds">0</strong>
+          <span>Seconds</span>
+        </div>
       </div>
     </div>
+
+    <div class="card">
+      <h2>Location</h2>
+      <p>Ho Chi Minh City, Vietnam</p>
+
+      <a
+        class="map-btn"
+        href="https://www.google.com/maps/search/?api=1&query=Ho+Chi+Minh+City+Vietnam"
+        target="_blank">
+        📍 Open in Google Maps
+      </a>
+    </div>
+
   </div>
 </section>
 
 <!-- PHOTOS -->
 <section id="photos" class="screen">
-  <div class="small">Memories</div>
-  <h2>Photo Album</h2>
+  <div class="container">
 
-  <div class="card">
-    <p class="subtitle">
-      A special collection of memories for your guests.
-    </p>
+    <div class="hero">
+      <div class="eyebrow">Beautiful Memories</div>
+      <h1>Photo Album</h1>
+      <div class="gold-line"></div>
+      <p class="subtitle">
+        A place to share your favorite memories.
+      </p>
+    </div>
 
-    <div class="photos">
+    <div class="card gallery">
       <div class="photo">📸</div>
-      <div class="photo">✨</div>
       <div class="photo">🌸</div>
+      <div class="photo">✨</div>
       <div class="photo">🥂</div>
       <div class="photo">🎉</div>
       <div class="photo">❤️</div>
     </div>
+
   </div>
 </section>
 
 <!-- MUSIC -->
 <section id="music" class="screen">
-  <div class="small">Listen</div>
-  <h2>Our Celebration Song</h2>
+  <div class="container">
 
-  <div class="card music">
-    <div class="music-icon">🎵</div>
+    <div class="hero">
+      <div class="eyebrow">Our Special Song</div>
+      <h1>Music</h1>
+      <div class="gold-line"></div>
+    </div>
 
-    <p class="subtitle">
-      Tap below to play the celebration music.
-    </p>
+    <div class="card music-card">
+      <div style="font-size:55px;">🎵</div>
+      <h2>Our Celebration Song</h2>
+      <p class="subtitle">
+        A special song to make the moment even more memorable.
+      </p>
 
-    <button class="button" onclick="toggleMusic()" id="musicButton">
-      ▶ Play Music
-    </button>
+      <button class="music-button" onclick="toggleMusic()" id="musicBtn">
+        ▶
+      </button>
+
+      <p id="musicStatus">Tap to play</p>
+    </div>
+
   </div>
 </section>
 
 <!-- RSVP -->
 <section id="rsvp" class="screen">
-  <div class="small">Your Reply</div>
-  <h2>Will You Join Us?</h2>
+  <div class="container">
 
-  <div class="card">
-
-    <div class="rsvp-buttons">
-      <button onclick="chooseRSVP('Yes')">💗 Yes</button>
-      <button onclick="chooseRSVP('No')">Maybe / No</button>
+    <div class="hero">
+      <div class="eyebrow">We Hope You Can Join Us</div>
+      <h1>RSVP</h1>
+      <div class="gold-line"></div>
     </div>
 
-    <label>Your Name</label>
-    <input id="guestName" placeholder="Enter your name">
+    <div class="card">
 
-    <label>Number of Guests</label>
-    <select id="guestCount">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
+      <h2>Will you be joining us?</h2>
 
-    <button class="button" onclick="submitRSVP()">
-      Send RSVP
-    </button>
+      <div class="rsvp-options">
+        <button onclick="chooseRSVP('Yes')">❤️ Yes, I'll be there</button>
+        <button onclick="chooseRSVP('Maybe')">✨ Maybe</button>
+        <button onclick="chooseRSVP('No')">Thank you, but I can't</button>
+      </div>
 
-    <div class="message" id="message"></div>
+      <input id="guestName" type="text" placeholder="Your name">
+
+      <select id="guestCount">
+        <option value="1">1 guest</option>
+        <option value="2">2 guests</option>
+        <option value="3">3 guests</option>
+        <option value="4">4 guests</option>
+        <option value="5">5 guests</option>
+      </select>
+
+      <button class="main-btn" onclick="submitRSVP()">
+        Submit RSVP
+      </button>
+
+      <p id="rsvpMessage" class="message"></p>
+
+    </div>
+
   </div>
 </section>
 
 <!-- NAVIGATION -->
-<div class="nav">
+<nav class="bottom-nav">
   <button onclick="showScreen('invite')">
-    <span>💌</span>
-    Invite
+    <span>💌</span>Invite
   </button>
 
   <button onclick="showScreen('photos')">
-    <span>📸</span>
-    Photos
+    <span>📸</span>Photos
   </button>
 
   <button onclick="showScreen('music')">
-    <span>🎵</span>
-    Music
+    <span>🎵</span>Music
   </button>
 
   <button onclick="showScreen('rsvp')">
-    <span>💗</span>
-    RSVP
+    <span>💗</span>RSVP
   </button>
-</div>
+</nav>
 
 <script>
 
-function openInvite() {
-  document.getElementById("cover").style.display = "none";
+let selectedRSVP = "";
+let audioContext;
+let oscillator;
+let gainNode;
+let playing = false;
+
+function openInvitation() {
+  document.getElementById("opening").style.display = "none";
   showScreen("invite");
 }
 
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(function(screen) {
-    screen.classList.remove("active");
+function showScreen(screen) {
+  document.querySelectorAll(".screen").forEach(function(section) {
+    section.classList.remove("active");
   });
 
-  document.getElementById(id).classList.add("active");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  document.getElementById(screen).classList.add("active");
+  window.scrollTo(0,0);
 }
-
-function openMap() {
-  window.open(
-    "https://www.google.com/maps/search/?api=1&query=Ho+Chi+Minh+City+Vietnam",
-    "_blank"
-  );
-}
-
-const eventDate = new Date("November 14, 2026 18:00:00").getTime();
 
 function updateCountdown() {
 
+  const eventDate = new Date("November 14, 2026 18:00:00").getTime();
   const now = new Date().getTime();
   const distance = eventDate - now;
 
-  if (distance < 0) return;
+  if (distance <= 0) {
+    document.getElementById("days").textContent = "0";
+    document.getElementById("hours").textContent = "0";
+    document.getElementById("minutes").textContent = "0";
+    document.getElementById("seconds").textContent = "0";
+    return;
+  }
 
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
@@ -422,13 +554,9 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-let musicPlaying = false;
-let audioContext;
-let oscillator;
-
 function toggleMusic() {
 
-  if (!musicPlaying) {
+  if (!playing) {
 
     audioContext = new (
       window.AudioContext ||
@@ -436,58 +564,65 @@ function toggleMusic() {
     )();
 
     oscillator = audioContext.createOscillator();
+    gainNode = audioContext.createGain();
 
-    oscillator.type = "sine";
     oscillator.frequency.value = 440;
+    oscillator.type = "sine";
 
-    oscillator.connect(audioContext.destination);
+    gainNode.gain.value = 0.04;
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
     oscillator.start();
 
-    musicPlaying = true;
+    playing = true;
 
-    document.getElementById("musicButton").textContent =
-      "⏸ Stop Music";
+    document.getElementById("musicBtn").textContent = "⏸";
+    document.getElementById("musicStatus").textContent =
+      "Music is playing";
 
   } else {
 
     oscillator.stop();
-    musicPlaying = false;
+    playing = false;
 
-    document.getElementById("musicButton").textContent =
-      "▶ Play Music";
+    document.getElementById("musicBtn").textContent = "▶";
+    document.getElementById("musicStatus").textContent =
+      "Tap to play";
   }
 }
 
-let selectedRSVP = "";
-
 function chooseRSVP(answer) {
   selectedRSVP = answer;
+
+  document.querySelectorAll(".rsvp-options button").forEach(function(button) {
+    button.style.background = "white";
+  });
+
+  event.target.style.background = "#f3e3df";
 }
 
 function submitRSVP() {
 
-  const name =
-    document.getElementById("guestName").value;
-
-  const guests =
-    document.getElementById("guestCount").value;
-
-  const message =
-    document.getElementById("message");
+  const name = document.getElementById("guestName").value;
+  const guests = document.getElementById("guestCount").value;
+  const message = document.getElementById("rsvpMessage");
 
   if (!name) {
-    message.textContent =
-      "Please enter your name first.";
-  } else {
-
-    message.textContent =
-      "Thank you, " + name +
-      "! Your RSVP has been recorded as " +
-      (selectedRSVP || "Yes") +
-      " for " + guests + " guest(s).";
+    message.textContent = "Please enter your name.";
+    return;
   }
 
-  message.style.display = "block";
+  if (!selectedRSVP) {
+    message.textContent = "Please choose an RSVP option.";
+    return;
+  }
+
+  message.textContent =
+    "Thank you, " + name +
+    "! Your RSVP has been recorded for " +
+    guests + " guest(s). ❤️";
 }
 
 </script>

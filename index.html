@@ -456,7 +456,7 @@ input, select {
     </div>
 
     <div class="card music-card">
-      <div style="font-size:55px;">🎵</div>
+<audio id="celebrationAudio" src="mixkit-romantic-659.mp3"></audio>
       <h2>Our Celebration Song</h2>
       <p class="subtitle">
         A special song to make the moment even more memorable.
@@ -594,8 +594,20 @@ setInterval(updateCountdown, 1000);
 updateCountdown();
 
 function toggleMusic() {
+  const audio = document.getElementById("celebrationAudio");
+  const btn = document.getElementById("musicBtn");
+  const status = document.getElementById("musicStatus");
 
-  if (!playing) {
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = "⏸";
+    status.textContent = "Playing our celebration song ♡";
+  } else {
+    audio.pause();
+    btn.textContent = "▶";
+    status.textContent = "Tap to play";
+  }
+}
 
     audioContext = new (
       window.AudioContext ||
